@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+  Services is our priority
+{% endblock %}
+{% block title %}
+  Search
+{% endblock %}
+{% block content %}
+<div>
+  <p class="text-center my_search_text">You are searching for : <b>"{{query}}"</b></p>
+</div>
+<div class="container">
+            <div class="row mx-auto">
+                {% for product in products %}
+                    <div class="my_margin col-9 col-sm-12 col-md-4 xol-lg-4">
+                        <div class="card text-center">
+                            <a href="{{product.get_url}}"><img class="card-img-top" src="{{product.image.url}}" alt="{{product.name}}" width="300" height="300"></a>
+                            <div class="card-body">
+                                <h4 class="ma_name">{{product.name}}</h4>
+                                <p class="ma_price">{{product.price}}</p>
+                            </div>
+                        </div>
+                    </div>
+                      {% empty %}
+                        <div class="row mx-auto">
+                          <p class="text-center my_search_text"> 0 results found</p>
+                        </div>
+                        {% endfor %}
+            </div>
+</div>
+{% endblock %}
